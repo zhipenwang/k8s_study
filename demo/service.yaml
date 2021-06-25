@@ -8,4 +8,5 @@ spec:
     app: nginx-deploy
   ports:
     - port: 80
+      name: http
   type: NodePort
