@@ -17,6 +17,8 @@ spec:
         - name: nginx-deploy
           image: nginx
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
       restartPolicy: Always
   selector:
     matchLabels:
