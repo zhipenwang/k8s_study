@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-demo
+  namespace: kubernetes-dashboard
+  labels:
+    app: golang-demo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: golang-demo
+      labels:
+        app: golang-demo
+    spec:
+      containers:
+        - name: golang-demo
+          image: golang
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8011
+          env:
+            - name: HTTPPORT
+              value: "8011"
+          volumeMounts:
+            - mountPath: /golang
+              name: process
+          workingDir: /golang
+          command:
+            - "go"
+            - "run"
+            - "main.go"
+      restartPolicy: Always
+      volumes:
+        - name: process
+          hostPath:
+            path: /Users/wzp/xes/code/k8s/golang
+  selector:
+    matchLabels:
+      app: golang-demo
