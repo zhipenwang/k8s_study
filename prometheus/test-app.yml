@@ -1,0 +1,12 @@
+- targets: ['10.73.56.36:8808', '10.73.56.36:8809']
+  labels:
+    job: test-one
+- targets: ['10.73.56.36:8809']
+  labels:
+    job: test-two
+- targets: ['10.73.56.36:8808']
+  labels:
+    job: test-three
+- targets: ['10.73.56.36:8808', '10.73.56.36:8809']
+  labels:
+    job: test-four

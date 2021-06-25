@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: kubernetes-dashboard
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: prometheus
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.0.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - "/bin/prometheus"
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus"
+            - "--storage.tsdb.retention=24h"
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/prometheus"
+              name: data
+            - mountPath: "/etc/prometheus"
+              name: config-volume
+            - mountPath: "/etc/prometheus/yaml"
+              name: config-yaml
+      restartPolicy: Always
+      serviceAccountName: kubernetes-dashboard
+      volumes:
+          - name: data
+            emptyDir: { }
+          - name: config-volume
+            configMap:
+              name: prometheus-config
+          - name: config-yaml
+            hostPath:
+              path: /Users/wzp/xes/code/k8s/prometheus
+  selector:
+    matchLabels:
+      app: prometheus
