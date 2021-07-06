@@ -1,0 +1,7 @@
+commonLabels:
+  app: nginx-kustom
+resources:
+  - deployment.yaml
+  - service.yaml
+configMapGenerator:
+  - name: nginx-kustom
