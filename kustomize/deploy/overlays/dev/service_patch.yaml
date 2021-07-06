@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-deploy
+spec:
+  selector:
+    app: test-deploy
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+  type: LoadBalancer

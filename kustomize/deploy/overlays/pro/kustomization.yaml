@@ -1,0 +1,8 @@
+bases:
+  - ../../base
+patchesStrategicMerge:
+  - healthcheck_patch.yaml
+  - memorylimit_patch.yaml
+  - ingress_patch.yaml
+  - service_patch.yaml
+namespace: pro-deploy

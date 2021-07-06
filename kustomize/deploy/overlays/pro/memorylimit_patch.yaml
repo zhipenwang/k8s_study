@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deploy
+  labels:
+    app: test-deploy
+spec:
+  template:
+    metadata:
+      name: test-deploy
+      labels:
+        app: test-deploy
+    spec:
+      containers:
+        - name: test-deploy
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          env:
+            - name: ENV
+              value: pro
+  selector:
+    matchLabels:
+      app: test-deploy
