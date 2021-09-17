@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-io-demo
+  labels:
+    app: k8s-io-demo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: k8s-io-demo
+      labels:
+        app: k8s-io-demo
+    spec:
+      containers:
+        - name: k8s-io-demo
+          image: k8s-io-demo
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: k8s-io-demo
