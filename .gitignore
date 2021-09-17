@@ -13,3 +13,7 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+k8s_go_client/.idea
+k8s_go_client/config
+k8s_go_client/go.sum
